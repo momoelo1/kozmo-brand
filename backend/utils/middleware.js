@@ -4,13 +4,19 @@ const User = require("../models/User");
 
 const getTokenFrom = async (req) => {
   const accessCookie = req.cookies?.accessToken;
+  const authHeader = req.headers?.authorization;
+  const bearerToken = authHeader?.startsWith("Bearer ")
+    ? authHeader.slice(7)
+    : null;
 
-  if (!accessCookie) {
+  const token = accessCookie || bearerToken;
+
+  if (!token) {
     return null;
   }
 
   try {
-    const decodedToken = jwt.verify(accessCookie, process.env.SECRET);
+    const decodedToken = jwt.verify(token, process.env.SECRET);
 
     if (!decodedToken || !decodedToken.userId) {
       return null;
