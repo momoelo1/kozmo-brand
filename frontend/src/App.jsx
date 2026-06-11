@@ -103,8 +103,8 @@ function App() {
     dispatch(clearCart());
     dispatch(clearProducts());
     dispatch(setNotification(message, "info"));
-    window.location.href = "/";
-  }, [dispatch]);
+    navigate("/");
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     const checkSession = () => {

@@ -33,13 +33,14 @@ const Login = () => {
       const logUser = await loginService.login({ username, password });
       window.localStorage.setItem("loggedUser", JSON.stringify(logUser));
       dispatch(setUser(logUser));
-      await dispatch(cartProducts());
       dispatch(setNotification("Successfully logged in!", "success"));
       const from = location.state?.from?.pathname || "/";
       navigate(from);
     } catch {
       dispatch(setNotification("Invalid username or password", "error"));
+      return;
     }
+    dispatch(cartProducts());
   };
 
   return (
@@ -86,12 +87,16 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" className="login-btn">Sign in</button>
+          <button type="submit" className="login-btn">
+            Sign in
+          </button>
         </form>
 
         <p className="login-register">
           No account yet?{" "}
-          <Link to="/subscribe" className="login-register-link">Create one</Link>
+          <Link to="/subscribe" className="login-register-link">
+            Create one
+          </Link>
         </p>
       </div>
     </div>

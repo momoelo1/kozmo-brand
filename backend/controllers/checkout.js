@@ -48,7 +48,7 @@ checkoutRouter.post(
         line_items: lineItems,
         mode: "payment",
         success_url: `${CLIENT}/#/?payment=success&order=${orderNames}`,
-        cancel_url: `${CLIENT}/#/cart?cancelled=true`,
+        cancel_url: `${CLIENT}/#/`,
         metadata: { userId: user._id.toString() },
       });
 

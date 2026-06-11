@@ -50,6 +50,7 @@ app.use(
       callback(new Error(`CORS blocked: ${origin}`));
     },
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 

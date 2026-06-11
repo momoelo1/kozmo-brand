@@ -6,12 +6,25 @@ import { clearCart } from "../reducers/cartReducer";
 import { clearProducts } from "../reducers/productsReducer";
 
 const getBaseUrl = () => {
-  return "/api";
+  return import.meta.env.VITE_API_URL || "/api";
 };
 
 const axiosInstance = axios.create({
   baseURL: getBaseUrl(),
   withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  try {
+    const stored = window.localStorage.getItem("loggedUser");
+    if (stored) {
+      const user = JSON.parse(stored);
+      if (user?.accessToken) {
+        config.headers.Authorization = `Bearer ${user.accessToken}`;
+      }
+    }
+  } catch {}
+  return config;
 });
 
 // Create a function to handle logout
@@ -21,8 +34,7 @@ const handleLogout = (message) => {
   store.dispatch(clearCart());
   store.dispatch(clearProducts());
   store.dispatch(setNotification(message, "info"));
-  // Force a page reload to ensure all UI components are reset
-  window.location.href = "/";
+  window.location.hash = "#/";
 };
 
 axiosInstance.interceptors.response.use(
