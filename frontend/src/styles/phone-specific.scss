@@ -1,0 +1,9 @@
+/* phone-specific.scss — safe-area insets for notched devices */
+
+@supports (padding: max(0px)) {
+  .navbar {
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-left: max(1.5rem, env(safe-area-inset-left) + 1rem);
+    padding-right: max(1.5rem, env(safe-area-inset-right) + 1rem);
+  }
+}

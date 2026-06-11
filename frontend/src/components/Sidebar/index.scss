@@ -1,0 +1,312 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: rgba(18, 18, 18, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 184, 77, 0.15);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    height: 6rem;
+    padding: 0 1rem;
+  }
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    transform: scale(1.07);
+  }
+  &:active {
+    transform: scale(0.94);
+  }
+
+  @media (max-width: 768px) {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 4.5rem;
+    height: 6rem;
+  }
+}
+
+.navbar-svg-logo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  animation: afd-float 3s ease-in-out infinite;
+
+  .navbar-logo:hover & {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes afd-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  @media (max-width: 768px) {
+    .navbar-icon-btn,
+    .navbar-user {
+      display: none;
+    }
+  }
+}
+
+.navbar-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+  }
+
+  &:hover {
+    background: rgba(255, 184, 77, 0.1);
+  }
+  &:active {
+    transform: scale(0.93);
+  }
+
+  &.logged-in img {
+    filter: drop-shadow(0 0 6px rgba(255, 184, 77, 0.5));
+  }
+
+  @media (max-width: 768px) {
+    width: 2.5rem;
+    height: 2.5rem;
+    img {
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+  }
+}
+
+.cart-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: #ff4757;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  min-width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.18rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.navbar-user {
+  position: relative;
+}
+
+.user-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 13rem;
+  background: rgba(18, 18, 18, 0.97);
+  border: 1px solid rgba(255, 184, 77, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0s linear 0.16s;
+
+  &.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+  }
+
+  .user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.1rem 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .user-menu-avatar {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffb84d, #ff9500);
+    color: #1a1a1a;
+    font-size: 0.88rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .user-menu-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+
+  .user-menu-name {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.84rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-menu-email {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 0.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-menu-id {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.62rem;
+    font-family: monospace;
+    letter-spacing: 0.3px;
+  }
+
+  .user-menu-cart-section {
+    display: block;
+    padding: 0.65rem 1.1rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 184, 77, 0.06);
+    }
+  }
+
+  .user-menu-cart-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .user-menu-cart-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  .user-menu-cart-summary {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ffb84d;
+  }
+
+  .user-menu-cart-empty {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .user-menu-cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    margin-top: 0.35rem;
+  }
+
+  .user-menu-cart-item {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .user-menu-cart-more {
+    font-size: 0.68rem;
+    color: rgba(255, 184, 77, 0.45);
+    font-style: italic;
+  }
+
+  .user-menu-logout {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 1.1rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.84rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.18s ease, color 0.18s ease;
+
+    &:hover {
+      background: rgba(255, 184, 77, 0.08);
+      color: #ffb84d;
+    }
+  }
+}
+

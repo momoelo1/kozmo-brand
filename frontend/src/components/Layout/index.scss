@@ -1,0 +1,290 @@
+/* ── Fixed left category sidebar ── */
+.home-left-sidebar {
+  background: rgba(8, 8, 8, 0.68);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(255, 184, 77, 0.1);
+  position: fixed;
+  left: 0;
+  top: 7rem;
+  width: 12rem;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.home-left-sidebar > * {
+  pointer-events: auto;
+}
+
+
+/* ── Shared sidebar pill button (Info trigger + social links) ── */
+.sidebar-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  padding: 0.38rem 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+
+  svg {
+    width: 0.82rem;
+    height: 0.82rem;
+    flex-shrink: 0;
+    transition: color 0.18s ease;
+  }
+
+  img {
+    width: 0.92rem;
+    height: 0.92rem;
+    object-fit: contain;
+    opacity: 0.55;
+    flex-shrink: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  &:visited { color: rgba(255, 255, 255, 0.42); }
+
+  &:hover {
+    border-color: rgba(255, 184, 77, 0.22);
+    background: rgba(255, 184, 77, 0.055);
+    color: rgba(255, 255, 255, 0.78);
+    img { opacity: 0.88; }
+    svg { color: rgba(255, 184, 77, 0.75); }
+  }
+
+  &.active {
+    border-color: rgba(255, 184, 77, 0.3);
+    background: rgba(255, 184, 77, 0.08);
+    color: #ffb84d;
+    svg { color: #ffb84d; }
+  }
+}
+
+/* ── Sidebar accordion ── */
+.sidebar-accordion {
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  justify-content: flex-start;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+}
+
+.accordion-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.25rem 0.6rem 1.45rem;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.78rem;
+  font-weight: 400;
+  font-family: inherit;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0.2px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  text-decoration: none;
+
+  svg {
+    width: 0.55rem;
+    height: auto;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.15);
+    transform: rotate(180deg);
+    transition: transform 0.22s ease, color 0.18s ease;
+  }
+
+  &.open {
+    color: #ffb84d;
+    border-left-color: rgba(255, 184, 77, 0.55);
+    svg { transform: rotate(0deg); color: rgba(255, 184, 77, 0.5); }
+  }
+
+  &:hover:not(.open) {
+    color: rgba(255, 255, 255, 0.72);
+    border-left-color: rgba(255, 184, 77, 0.2);
+    svg { color: rgba(255, 255, 255, 0.3); }
+  }
+
+  &:focus-visible {
+    outline: 1px solid rgba(255, 184, 77, 0.4);
+    outline-offset: -1px;
+  }
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  &.open { max-height: 600px; }
+}
+
+.category-btn {
+  padding: 0.55rem 1.25rem 0.55rem 1.65rem;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 0.66rem;
+  font-weight: 400;
+  font-family: inherit;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: none;
+  transition: color 0.18s ease, border-color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  line-height: 1.4;
+
+  &:hover { color: rgba(255, 255, 255, 0.62); border-left-color: rgba(255, 184, 77, 0.22); }
+  &.active { color: #ffb84d; border-left-color: #ffb84d; font-weight: 600; }
+  &:focus-visible { outline: 1px solid rgba(255, 184, 77, 0.5); outline-offset: -1px; }
+}
+
+.accordion-info-group {
+  padding: 0.2rem 0 0.35rem;
+}
+
+.accordion-info-heading {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  padding: 0.4rem 1.25rem 0.15rem 1.65rem;
+  margin: 0;
+}
+
+.accordion-info-link {
+  display: block;
+  padding: 0.28rem 1.25rem 0.28rem 1.65rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.76rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  &:visited { color: rgba(255, 255, 255, 0.58); }
+  &:hover { color: #ffb84d; }
+}
+
+.accordion-social-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.25rem 0.75rem 1.45rem;
+}
+
+.sidebar-pill-btn {
+  img { opacity: 0.82; }
+
+  &.instagram-pill {
+    border-color: rgba(225, 48, 108, 0.3);
+    img { opacity: 0.88; }
+    &:hover {
+      background: rgba(225, 48, 108, 0.12);
+      border-color: rgba(225, 48, 108, 0.55);
+      img { opacity: 1; }
+    }
+  }
+
+  &.tiktok-pill {
+    border-color: rgba(255, 255, 255, 0.12);
+    img { opacity: 0.88; }
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.35);
+      img { opacity: 1; }
+    }
+  }
+
+  &.facebook-pill {
+    border-color: rgba(24, 119, 242, 0.3);
+    img { opacity: 0.88; }
+    &:hover {
+      background: rgba(24, 119, 242, 0.12);
+      border-color: rgba(24, 119, 242, 0.55);
+      img { opacity: 1; }
+    }
+  }
+}
+
+
+.page {
+  width: 100%;
+  margin-left: 0;
+  min-height: auto;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease-in-out;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  /* Cross-browser compatibility */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+  }
+
+  /* Space for fixed left sidebar on Home */
+  &.home-page {
+    @media screen and (min-width: 769px) {
+      padding-left: calc(11rem + 1.5vw + 0.5rem);
+    }
+  }
+}
+
+/* Special handling for login and subscribe pages */
+.auth-page {
+  width: 100%;
+  margin-left: 0;
+  padding: 0;
+  overflow: hidden;
+}
+

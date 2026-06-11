@@ -1,0 +1,13 @@
+# Claude Code
+.claude/
+
+# IDE
+.cursor/
+.vscode/
+
+# Old scratch folders
+stripe-checkout-session and webhoow JS/
+
+# OS
+.DS_Store
+Thumbs.db

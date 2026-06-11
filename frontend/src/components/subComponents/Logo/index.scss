@@ -1,0 +1,14 @@
+.logoDiv {
+  display: block;
+  width: 100px;
+  height: 100px;
+  padding: 8px;
+  opacity: 0.5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+}
