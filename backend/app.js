@@ -28,21 +28,22 @@ mongoose
     process.exit(1);
   });
 
-const ALLOWED_ORIGINS = [
-  process.env.CLIENT_URL,
-  process.env.CLIENT_URL_ALT,
-].filter(Boolean);
+const toOrigin = (url) => {
+  try { return new URL(url).origin; } catch { return null; }
+};
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // allow server-to-server (no origin) and REST clients
       if (!origin) return callback(null, true);
-      // allow GitHub Pages
-      if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
-      // allow any localhost port (dev)
-      if (/^http:\/\/localhost(:\d+)?$/.test(origin)) return callback(null, true);
-      // allow any LAN IP on port 5173 (phone / dev machine on same network)
+
+      const allowed = [process.env.CLIENT_URL, process.env.CLIENT_URL_ALT]
+        .filter(Boolean)
+        .map(toOrigin)
+        .filter(Boolean);
+
+      if (allowed.includes(origin)) return callback(null, true);
+      if (/^https?:\/\/localhost(:\d+)?$/.test(origin)) return callback(null, true);
       if (/^http:\/\/(192\.168|10\.|172\.(1[6-9]|2\d|3[01]))\.\d+\.\d+:5173$/.test(origin)) {
         return callback(null, true);
       }
