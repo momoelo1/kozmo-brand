@@ -8,19 +8,19 @@ import "./index.scss";
 const platforms = [
   {
     name: "Instagram",
-    handle: "@afd.milano",
-    url: "https://instagram.com/afd.milano",
+    handle: "@kozmo.brand",
+    url: "https://instagram.com/kozmo.brand",
     icon: instagramIcon,
   },
   {
     name: "TikTok",
-    handle: "@afd.milano",
-    url: "https://tiktok.com/@afd.milano",
+    handle: "@kozmo.brand",
+    url: "https://tiktok.com/@kozmo.brand",
     icon: tiktokIcon,
   },
   {
     name: "Facebook",
-    handle: "AFD Milano",
+    handle: "KoZmo",
     url: "https://facebook.com",
     icon: facebookIcon,
   },
@@ -32,7 +32,7 @@ const Social = () => {
   const [isDesktop] = useState(() => window.innerWidth > 768);
 
   useEffect(() => {
-    document.title = "Social – AFD Milano";
+    document.title = "Social – KoZmo";
     if (isDesktop) navigate("/", { replace: true });
   }, [isDesktop, navigate]);
 
@@ -48,7 +48,7 @@ const Social = () => {
       <div className={`social-card${cardReady ? " card-ready" : ""}`}>
         <div className="social-header">
           <h1 className="social-heading">Follow Us</h1>
-          <p className="social-sub">Stay connected with AFD Milano</p>
+          <p className="social-sub">Stay connected with KoZmo</p>
         </div>
 
         <div className="social-links">

@@ -25,7 +25,7 @@ const Cart = ({ user, cartProds }) => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    document.title = "Cart – AFD Milano";
+    document.title = "Cart – KoZmo";
   }, []);
 
   useEffect(() => {

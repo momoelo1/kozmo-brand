@@ -12,7 +12,7 @@ const Success = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    document.title = "Order Confirmed – AFD Milano";
+    document.title = "Order Confirmed – KoZmo";
     dispatch(setNotification("Payment successful! Your order is confirmed.", "success"));
   }, [dispatch]);
 

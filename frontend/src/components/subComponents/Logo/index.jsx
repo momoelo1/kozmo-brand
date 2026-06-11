@@ -1,5 +1,5 @@
 import './index.scss'
-import logo from '../../../images/afd-logo-nero.png'
+import logo from '../../../images/kozmo-logo.png'
 
 const Logo = ({logoClass}) => {
   return (

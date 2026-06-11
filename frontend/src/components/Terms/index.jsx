@@ -32,7 +32,7 @@ const Terms = () => {
   const [isDesktop] = useState(() => window.innerWidth > 768);
 
   useEffect(() => {
-    document.title = "Terms – AFD Milano";
+    document.title = "Terms – KoZmo";
     if (isDesktop) navigate("/", { replace: true });
   }, [isDesktop, navigate]);
 

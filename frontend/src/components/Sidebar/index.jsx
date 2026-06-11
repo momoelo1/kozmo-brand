@@ -57,7 +57,7 @@ const Sidebar = () => {
           aria-hidden="true"
         >
           <defs>
-            <radialGradient id="afd-nav-glow" cx="0.5" cy="0.5" r="0.5">
+            <radialGradient id="kozmo-nav-glow" cx="0.5" cy="0.5" r="0.5">
               <stop offset="0" stopColor="#ffb84d" stopOpacity="0.32" />
               <stop offset="0.5" stopColor="#ffb84d" stopOpacity="0.08" />
               <stop offset="0.72" stopColor="#ffb84d" stopOpacity="0" />
@@ -68,7 +68,7 @@ const Sidebar = () => {
             cy="300"
             rx="300"
             ry="300"
-            fill="url(#afd-nav-glow)"
+            fill="url(#kozmo-nav-glow)"
           />
           <image href={kozmoLogoSrc} x="0" y="0" width="598" height="600" />
         </svg>

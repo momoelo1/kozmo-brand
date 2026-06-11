@@ -19,7 +19,7 @@ const Login = () => {
   const location = useLocation();
 
   useEffect(() => {
-    document.title = "Login – AFD Milano";
+    document.title = "Login – KoZmo";
   }, []);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Login = () => {
       <div className={`login-card${cardReady ? " card-ready" : ""}`}>
         <div className="login-header">
           <h1 className="login-heading">Welcome back</h1>
-          <p className="login-sub">Sign in to your AFD account</p>
+          <p className="login-sub">Sign in to your KoZmo account</p>
         </div>
 
         <form onSubmit={handleLogin} className="login-form">

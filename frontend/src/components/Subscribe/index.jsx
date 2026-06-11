@@ -16,7 +16,7 @@ const Subscribe = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Sign Up – AFD Milano";
+    document.title = "Sign Up – KoZmo";
   }, []);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Subscribe = () => {
       <div className={`login-card${cardReady ? " card-ready" : ""}`}>
         <div className="login-header">
           <h1 className="login-heading">Create account</h1>
-          <p className="login-sub">Join AFD Milano</p>
+          <p className="login-sub">Join KoZmo</p>
         </div>
 
         <form onSubmit={addUser} className="login-form">

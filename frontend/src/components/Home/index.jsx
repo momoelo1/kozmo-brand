@@ -267,10 +267,10 @@ const Home = () => {
         </button>
         <div className={`accordion-body${activeSection === "social" ? " open" : ""}`}>
           <div className="accordion-social-row">
-            <a href="https://instagram.com/afd.milano" className="sidebar-pill-btn instagram-pill" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a href="https://instagram.com/kozmo.brand" className="sidebar-pill-btn instagram-pill" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <img src={instagramIcon} alt="Instagram" />
             </a>
-            <a href="https://tiktok.com/@afd.milano" className="sidebar-pill-btn tiktok-pill" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <a href="https://tiktok.com/@kozmo.brand" className="sidebar-pill-btn tiktok-pill" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <img src={tiktokIcon} alt="TikTok" />
             </a>
             <a href="https://facebook.com" className="sidebar-pill-btn facebook-pill" target="_blank" rel="noopener noreferrer" aria-label="Facebook">

@@ -54,14 +54,14 @@
   height: 100%;
   display: block;
   overflow: visible;
-  animation: afd-float 3s ease-in-out infinite;
+  animation: kozmo-float 3s ease-in-out infinite;
 
   .navbar-logo:hover & {
     animation-play-state: paused;
   }
 }
 
-@keyframes afd-float {
+@keyframes kozmo-float {
   0%,
   100% {
     transform: translateY(0);
