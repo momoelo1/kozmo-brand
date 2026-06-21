@@ -74,11 +74,32 @@ const optionalTokenExtractor = async (req, res, next) => {
   next();
 };
 
+// A user is an admin if the DB flag is set OR their username is in the
+// ADMIN_USERNAMES env allowlist (comma-separated). The allowlist grants admin
+// without touching the DB; set it in .env and on the host (e.g. Render).
+const ADMIN_USERNAMES = (process.env.ADMIN_USERNAMES || "")
+  .split(",")
+  .map((u) => u.trim())
+  .filter(Boolean);
+
+const isAdminUser = (user) =>
+  !!user && (user.isAdmin || ADMIN_USERNAMES.includes(user.username));
+
+// Requires an authenticated admin. Must run AFTER tokenExtractor.
+const adminOnly = (req, res, next) => {
+  if (!isAdminUser(req.user)) {
+    return res.status(403).json({ error: "admin access required" });
+  }
+  next();
+};
+
 module.exports = {
   requestLogger,
   errorHandler,
   unknownEndpoint,
   tokenExtractor,
   optionalTokenExtractor,
+  adminOnly,
+  isAdminUser,
   getTokenFrom,
 };

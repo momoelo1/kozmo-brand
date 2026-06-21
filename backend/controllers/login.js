@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const loginRouter = require("express").Router();
 const User = require("../models/User");
 const { generateToken, setCookies } = require("./auth");
+const { isAdminUser } = require("../utils/middleware");
 const logger = require("../utils/logger");
 
 loginRouter.post("/", async (req, res) => {
@@ -18,6 +19,7 @@ loginRouter.post("/", async (req, res) => {
         _id: user._id,
         username: user.username,
         email: user.email,
+        isAdmin: isAdminUser(user),
         cartItems: user.cartItems,
       });
     } else {
