@@ -97,24 +97,4 @@ productRouter.get("/:id", async (req, res) => {
   }
 });
 
-productRouter.patch("/:id/images", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { front, back } = req.body;
-
-    const images = [front, back].filter(Boolean);
-    if (images.length === 0) {
-      return res.status(400).json({ error: "at least one image url required" });
-    }
-
-    const updated = await stripe.products.update(id, { images });
-    productCache = null;
-
-    res.json({ id: updated.id, images: updated.images });
-  } catch (err) {
-    logger.error("image update error:", err);
-    res.status(500).json({ error: "failed to update images" });
-  }
-});
-
 module.exports = productRouter;

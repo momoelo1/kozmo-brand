@@ -10,6 +10,7 @@ const loginRouter = require("./controllers/login");
 const productRouter = require("./controllers/product");
 const cartRouter = require("./controllers/cart");
 const checkoutRouter = require("./controllers/checkout");
+const orderRouter = require("./controllers/order");
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
 const mongoose = require("mongoose");
@@ -70,6 +71,18 @@ const apiLimiter = rateLimit({
   legacyHeaders: false,
 });
 app.use("/api", apiLimiter);
+
+// Strict limiter for credential endpoints — slows password brute-forcing.
+// Only failed attempts count, so legitimate users are never locked out.
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: true,
+  message: { error: "Too many login attempts. Please try again later." },
+});
+app.use("/api/login", loginLimiter);
 app.use(middleware.requestLogger);
 
 app.use(cookieParser());
@@ -89,6 +102,7 @@ app.use("/api/users", userRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/products", productRouter);
 app.use("/api/checkout", checkoutRouter);
+app.use("/api/orders", orderRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
